@@ -13,7 +13,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("💊 Medical Insurance Charges Prediction App")
+st.title("💊 Medical Insurance Cost Estimator")
 st.write("Predict insurance charges and understand why the prediction is high or low.")
 
 # -------------------- Sidebar Inputs --------------------
@@ -60,7 +60,7 @@ input_data = pd.DataFrame([[
 ])
 
 # -------------------- Prediction --------------------
-if st.button("🔍 Predict Insurance Charges"):
+if st.button("🔍 Calculate Insurance Cost""):
     raw_prediction = model.predict(input_data)[0]
 
     # -------- FIX: Insurance must be positive --------
@@ -71,8 +71,9 @@ if st.button("🔍 Predict Insurance Charges"):
     lower = prediction * 0.9
     upper = prediction * 1.1
 
-    st.success(f"💰 **Predicted Insurance Charges:** ₹ {prediction:,.2f}")
-    st.info(f"📊 **Expected Range:** ₹ {lower:,.2f} – ₹ {upper:,.2f}")
+    st.success(f"💰 Estimated Insurance Charges: ₹ {prediction:,.2f}")
+    st.info(f"📊 Likely Cost Range: ₹ {lower:,.2f} – ₹ {upper:,.2f}")
+
 
     # -------------------- Explainable AI --------------------
     coeffs = model.coef_
@@ -83,7 +84,7 @@ if st.button("🔍 Predict Insurance Charges"):
         "Impact": coeffs * input_data.iloc[0]
     }).sort_values(by="Impact", ascending=False)
 
-    st.subheader("📌 Feature Impact on Prediction")
+    st.subheader("📌 Factors Affecting Insurance Cost")
     st.bar_chart(impact_df.set_index("Feature"))
 
     # -------------------- Smart Explanation --------------------
@@ -100,7 +101,7 @@ if st.button("🔍 Predict Insurance Charges"):
         "region_southwest": "Region causes minor variation in charges."
     }
 
-    st.subheader("🧠 Insight")
+    st.subheader("🧠 Cost Explanation")
     st.write(explanation_map.get(top_feature, "Multiple factors influence the prediction."))
 
     # -------------------- What-If Analysis --------------------
@@ -121,3 +122,4 @@ if st.button("🔍 Predict Insurance Charges"):
             "ℹ️ For very low-risk profiles, Linear Regression may predict negative values. "
             "Business rules are applied to keep predictions realistic."
         )
+
