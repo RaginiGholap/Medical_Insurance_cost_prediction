@@ -60,7 +60,7 @@ input_data = pd.DataFrame([[
 ])
 
 # -------------------- Prediction --------------------
-if st.button("🔍 Calculate Insurance Cost""):
+if st.button("🔍 Calculate Insurance Cost"):
     raw_prediction = model.predict(input_data)[0]
 
     # -------- FIX: Insurance must be positive --------
@@ -122,4 +122,5 @@ if st.button("🔍 Calculate Insurance Cost""):
             "ℹ️ For very low-risk profiles, Linear Regression may predict negative values. "
             "Business rules are applied to keep predictions realistic."
         )
+
 
