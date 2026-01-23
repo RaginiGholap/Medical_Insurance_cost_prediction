@@ -13,7 +13,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("💊 Medical Insurance Cost Estimator")
+st.title("💊 AI-Driven Medical Insurance Cost Prediction System")
 st.write("Predict insurance charges and understand why the prediction is high or low.")
 
 # -------------------- Sidebar Inputs --------------------
@@ -71,7 +71,7 @@ if st.button("🔍 Calculate Insurance Cost"):
     lower = prediction * 0.9
     upper = prediction * 1.1
 
-    st.success(f"💰 Estimated Insurance Charges: ₹ {prediction:,.2f}")
+    st.success(f"💰 Predicted Insurance Charges: ₹ {prediction:,.2f}")
     st.info(f"📊 Likely Cost Range: ₹ {lower:,.2f} – ₹ {upper:,.2f}")
 
 
@@ -122,5 +122,6 @@ if st.button("🔍 Calculate Insurance Cost"):
             "ℹ️ For very low-risk profiles, Linear Regression may predict negative values. "
             "Business rules are applied to keep predictions realistic."
         )
+
 
 
